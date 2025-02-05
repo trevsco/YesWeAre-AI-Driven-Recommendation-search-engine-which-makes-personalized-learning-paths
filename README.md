@@ -2,7 +2,7 @@
 
 
 we are Shashwat, Reva and Srivishnavi of gitam university hyd
-This was our problem statement for the hackathon hosted by CODEDALE and organized by Pramana Team
+This was our problem statement for the hackathon hosted by CODEDALE and organized by Pramana '25 Team
 
 Problem Statement: 
 AI-Powered Course Recommendation System
