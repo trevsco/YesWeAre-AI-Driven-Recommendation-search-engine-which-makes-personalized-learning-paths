@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+
+    <!-- D3.js -->
+    <script src="https://d3js.org/d3.v3.min.js"></script>
+
+    <title>Course Recommendation | Dashboard</title>
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">Udemy Course Recommendation System</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/dashboard">Dashboard</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <div class="row">
+            <!-- Number of Subscribers Domain Wise -->
+            <div class="col-md-4">
+                <div class="card p-3">
+                    <h5 class="text-center">Number of Subscribers Domain Wise</h5>
+                    <canvas id="chart1"></canvas>
+                </div>
+            </div>
+
+            <!-- Number of Courses Level Wise -->
+            <div class="col-md-4">
+                <div class="card p-3">
+                    <h5 class="text-center">Number of Courses Level Wise</h5>
+                    <canvas id="chart2"></canvas>
+                </div>
+            </div>
+
+            <!-- Number of Subscribers Year Wise -->
+            <div class="col-md-4">
+                <div class="card p-3">
+                    <h5 class="text-center">Number of Subscribers Year Wise</h5>
+                    <canvas id="chart3"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Sample Data (Replace with Django variables when using backend)
+        var valuecounts = {"Programming": 3000, "Design": 1200, "Marketing": 2200};  // Example
+        var levelcounts = {"Beginner": 1500, "Intermediate": 900, "Advanced": 600};
+        var subscriberscountmap = {"2021": 12000, "2022": 18000, "2023": 22000};
+
+        var domainNames = Object.keys(valuecounts);
+        var domainCounts = Object.values(valuecounts);
+        var levelNames = Object.keys(levelcounts);
+        var levelCounts = Object.values(levelcounts);
+        var years = Object.keys(subscriberscountmap);
+        var subscribersCount = Object.values(subscriberscountmap);
+
+        // Chart 1: Subscribers Domain Wise
+        new Chart(document.getElementById("chart1"), {
+            type: 'doughnut',
+            data: {
+                labels: domainNames,
+                datasets: [{
+                    data: domainCounts,
+                    backgroundColor: ['#ff6384', '#36a2eb', '#ffce56']
+                }]
+            }
+        });
+
+        // Chart 2: Courses Level Wise
+        new Chart(document.getElementById("chart2"), {
+            type: 'doughnut',
+            data: {
+                labels: levelNames,
+                datasets: [{
+                    data: levelCounts,
+                    backgroundColor: ['#ff6384', '#36a2eb', '#ffce56']
+                }]
+            }
+        });
+
+        // Chart 3: Subscribers Year Wise
+        new Chart(document.getElementById("chart3"), {
+            type: 'bar',
+            data: {
+                labels: years,
+                datasets: [{
+                    label: "Subscribers",
+                    data: subscribersCount,
+                    backgroundColor: '#36a2eb'
+                }]
+            }
+        });
+    </script>
+
+    <!-- Bootstrap JS (Place at the end for better performance) -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+</body>
+</html>
